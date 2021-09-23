@@ -1,0 +1,334 @@
+---
+title: "STA130 -- Fall 2021"
+author: "[ADD YOUR NAME HERE]"
+subtitle: Week 3 Problem Set 
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+```
+
+
+# Instructions
+
+## How do I hand in these problems for the Thursday deadline ?
+
+Your complete .Rmd file that you create for these practice problems AND the resulting pdf (i.e., the one you 'Knit to PDF' from your .Rmd file) must be uploaded into a Quercus assignment (link: [https://q.utoronto.ca/courses/235890/assignments/711740](https://q.utoronto.ca/courses/235890/assignments/711740)) by 11:59AM ET, on Thursday, Sept 30th. Late problem sets are not accepted.
+
+
+
+# Problem set grading
+
+There are two parts to your problem set. One is largely R-based with short written answers and the other is more focused on writing. We recommend you use a word processing software like Microsoft Word to check for grammar errors in your written work. Note: there can be issues copying from Word to R Markdown so it may be easier to write in this file first and then copy the text to Word. Then you can make any changes flagged in Word directly in this file.
+
+
+
+# Part 1
+
+## [Question 1] The code below loads the `VGAMdata` package (so you can access the datasets it contains) and the `tidyverse` package (so you can use the functions it contains) and glimpses the `oly12` dataset, which you will use for this question
+
+```{r}
+library(tidyverse)
+library(VGAMdata)
+glimpse(oly12)
+```
+
+### (a) In this week's slides/videos, we looked at data for each country which participated in the 2012 Olympics (e.g. size of each country's Olympic team, number of medals won, etc.), and there was one observation (i.e. one row) for each participating country. What does each row in the `oly12` dataset represent?  Hint: Type `?oly12` in the console (bottom left) to view the help file for the `oly12` dataset (it will appear in the Help tab in the bottom right corner of RStudio)
+
+
+
+
+
+### (b) Use the `oly12` dataset to determine the number of athletes who represented Canada (`Canada`) or the United States (`United States of America`) in the 2012 Olympic Games. Note: there is more than one way to do this, but you need to use the `oly12` dataset for this question, not the dataset from the slides/videos.
+
+```{r}
+# Type your code here
+
+
+
+```
+
+
+
+
+### (c) Create a new dataframe called `oly12_FaveWomenSports` which contains only data for female athletes who competed in Track/Field (`Athletics`) or Swimming (`Swimming`) (look at values of the `Sport` variable).
+
+```{r}
+
+```
+
+
+### (d) Compare the age distribution for female olympic athletes competing in Track/Feild to the age distribution of olympic athletes competing in Swimming using both boxplots and histograms.  
+
+```{r}
+
+
+
+```
+
+
+### (e)  Based on the plots you created in (d), answer the following questions:
+
+### (i) Are the age distributions of female track/field athletes and swimmers symmetrical or skewed?
+
+
+### (ii) Is the median age higher for female track/field athletes or female swimmers?
+
+
+### (iii) Based only on the histogram and boxplots, predict whether the standard deviation of the ages is similar or different.  Justify your answer in 2-3 sentences.
+
+
+
+### (f) Create a summary table reporting the minimum, maximum, mean, median, and standard deviation of ages forfemale track/field athletes and female swimmers.  Compare these values to the prediction you made in (e-iii)
+
+```{r}
+
+
+```
+
+
+
+### (g)  Use the `arrange` function to find the name and age of the 6 youngest athletes who competed in the 2012 Olympics.
+
+```{r}
+
+
+```
+
+
+### (h)  Use the `arrange` and `desc` functions to find the name and age of the 6 oldest athletes who competed in the 2012 Olympics.
+
+```{r}
+
+
+```
+
+### (i)  Modify your code from (g) and (h) to find the name, Age, and event for the 6 youngest and 6 oldest competitors who won gold medals at the 2012 olympics.
+
+```{r}
+
+
+```
+
+
+### (j) Create a new variable called `total_medals` and find the name of the athlete who won the most medals at the 2012 Olympics.
+
+```{r}
+
+```
+
+
+
+
+
+
+
+\newpage
+
+
+## [Question 2] At the time it departed from England in April 1912, the RMS Titanic was the largest ship in the world. In the night of April 14th to April 15th, the Titanic struck an iceberg and sank approximately 600km south of Newfoundland (a province in eastern Canada). Many people perished in this accident. The code below loads data about the passengers who were on board the Titanic at the time of the accident.
+
+```{r}
+titanic <- read_csv("titanic.csv")
+glimpse(titanic)
+```
+
+### (a) Often, before you start working with a dataset you need to clean it.  
+
+### (i) Since many of their values are missing or unclear, modify the `titanic` data frame by removing the following variables: `Ticket_No`, `Boat_or_Body`, `CLass_Dept`, `Class_Full`.
+```{r}
+
+
+```
+
+### (ii) The variable `Adut_or_Chld` indicates which passengers were adults and which were children. Change the name of this variable to `Adult_or_Child`. `MWC` is a little more specific, recording whether the passenger was a man, woman or child. To make this variable name clearer, change the name of `MWC` to `Man_Woman_or_Child`. Hint: the use `rename()` function from the `dplyr` library to change the name of an existing variable.  For example, the following code would change the name of the "PlaceOB" variable in the `oly12` dataset to "Place_of_birth":
+```{r}
+# Note 1: Don't forget to overwrite the original tibble (i.e. save the modified data in place of the original tibble), otherwise the change won't be permanent
+# Note 2: When using the rename function, put the new variable name on the left of the equals sign, and the old variable name on the right. This is similar to the mutate function, where you put the name of the new variable on the left, and the formula to calculate it on the right.
+oly12 <- oly12 %>% rename(Place_of_birth = PlaceOB)
+```
+
+```{r}
+
+
+
+```
+
+
+### (b) Create a summary table reporting the number of passengers on the Titanic (n), the number of passengers who survied (n_surv), and the proportion of passengers who survived (prop_surv).
+```{r}
+
+
+```
+
+### (c) Calculate the proportion of deaths for the following groups of passengers.  Note that there is more than one way to do this in each of the parts below.  
+
+### (i) For men, women, and children:
+```{r}
+
+
+```
+
+### (ii) For passengers aged between 25-40 years of age:
+```{r}
+
+
+```
+
+### (iii) For men, women, and children among the passengers who paid more than 50 British pounds for their tickets: 
+```{r}
+
+
+```
+
+### (iv) Write several sentences interpreting the summary tables you created in parts (i)-(iii) of this question.
+
+
+
+
+### (d) What was the most common job among passengers of the Titanic? Write 1-2 sentences explaining your answer. Hint: create a summary table reporting the number of passengers with each job title, and sort it from most common to least common job.
+```{r}
+
+
+```
+
+
+
+### (e) Plot the age distribution for passengers with the job "General Labourer", and describe this distribution in 1-2 sentences.
+```{r}
+
+
+```
+
+
+
+
+### (f) Were any of the general labourers on the titanic women? If so, how many?
+
+```{r}
+
+
+
+
+
+```
+
+
+### (g) What are the names of the passengers with the top 4 most expensive tickets? Did these passengers survive the accident?
+```{r}
+
+
+```
+
+
+
+
+### (h) In this question, you will compare the distribution of ticket prices for survivors and non-survivors of the Titanic using both visualizations and summary tables.
+
+### (i) Construct two histograms to visualize the distribution of ticket prices for survivors and non-survivors (i.e. one histogram for survivors and one for non-survivors). Write 2-3 sentences comparing the two distributions based on these plots.
+```{r, fig.width=6, fig.height=3}
+
+
+```
+
+
+
+
+
+### (ii) Construct a pair of boxplots to visualize the distribution of ticket prices for survivors and non-survivors. Write 2-3 sentences comparing the two distributions based on these plots.
+```{r}
+
+
+```
+
+
+
+### (iii) Construct a summary table with the minimum, first quartile, median, mean, third quartile, and maximum ticket price for survivors and non-survivors.  Hint: The code below gives an example of the `quantile` function, which you'll use to calculate Q1 and Q3, as well as the na.rm=TRUE option:
+```{r}
+
+```
+
+
+**Write 2-3 sentences comparing the two distributions based on this summary table.**
+
+
+```{r}
+
+```
+
+
+
+
+### (iv) Comment on the strengths and weaknesses of each of the visualizations and summary table you constructed in parts (i), (ii), and (iii)
+
+
+
+
+## [Question 3] The code below reads in data about books sold on Amazon (https://dasl.datadescription.com/datafile/amazon-books/).  The data frame containing the book data is named `books`. Note that the height (`Height`), width (`Width`) and thickness (`Thick`) of books in this data frame are measured in inches.
+
+```{r}
+library(tidyverse) # Load the tidyverse package so it is available to use 
+books <- read.csv("amazonbooks.csv")
+```
+
+### (a) What is the name of the book(s) with the smallest number of pages in this sample of books, and how many pages does it have?
+```{r}
+
+
+```
+
+
+### (b) Create a summary table which reports the total number of books written by each author and the mean and variance of the  number of pages per book for each author, for the books represented in this sample of books. 
+
+```{r}
+
+
+```
+
+### (c) Modify your code from (b) so to create a new summary table which contains only information for authors who wrote more than 2 books, and sort them in decreasing order of number of books written.
+```{r}
+
+```
+
+
+\newpage 
+
+# Part 2
+
+## Background Info
+
+The Truth and Reconciliation Commission was charged with the responsibility of detailing the atrocities that occurred to Indigenous children during horrific events such as residential schools. For those of you who are not familiar with Canada’s history regarding Indigenous populations, I highly recommend reading the following two links: 
+
+Sixties Scoop: [https://www.thecanadianencyclopedia.ca/en/article/sixties-scoop](https://www.thecanadianencyclopedia.ca/en/article/sixties-scoop) 
+
+Residential Schools: [https://www.thecanadianencyclopedia.ca/en/article/residential-schools](https://www.thecanadianencyclopedia.ca/en/article/residential-schools) 
+
+Both of these links detail the unspeakable actions that the Canadian government took against Indigenous communities to force assimilation. The Truth and Reconciliation Commission’s report detailed 94 calls to action on how we can start to repair the horrible things done to Indigenous children during residential schools.  
+
+September 30th is National Truth and Reconciliation Day in Canada.
+
+## Writing Prompt
+
+Your writing prompt for this week is to review the 94 calls to action (found here: [https://www.cbc.ca/news/politics/truth-and-reconciliation-94-calls-to-action-1.3362258](https://www.cbc.ca/news/politics/truth-and-reconciliation-94-calls-to-action-1.3362258)) and select one which resonates the most with you. In a short paragraph: 
+ 
+(1) Explain what the calls to action are, 
+(2) Paraphrase the call to action for your readers, 
+(3) Explain why you selected this specific one. What does it mean to you?  
+
+ 
+
+## Some General Guidelines: 
+
+- Try to not send more than 20 minutes on the prompt.  
+- Aim for more than 200 words but less than 500 words.  
+- Use full sentences. 
+- Grammar is *not* the main focus of the assessment, but it is important that you communicate in a clear and professional manner. I.e., no slang or emojis should appear. 
+- Be specific. A good principle when responding to a writing prompt in STA130 is to assume that your audience is not aware of the subject matter (or in this case has not read the calls to action) 
+
+- You need to properly communicate what the call to action is by putting it in your own words (paraphrasing). You should not just copy the call to action and put it in quotation marks.  
+
+
+
